@@ -1,15 +1,36 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Login</router-link> |
-      <router-link to="/about">About</router-link>
+      <div v-show="loggedIn()">
+        <router-link to="/">Home</router-link>
+        |
+        <router-link to="/about">About</router-link>
+
+        <a class="align-right" v-on:click="logOut()">Log out</a>
+      </div>
     </div>
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  methods: {
+    loggedIn() {
+      return localStorage.getItem("token")
+    },
+    logOut() {
+      localStorage.clear();
+      this.$router.push('login');
+    }
+  }
+}
+</script>
+
 <style lang="scss">
 @import "~@/assets/scss/vendors/bootstrap-vue/index";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,9 +46,16 @@
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  cursor: pointer;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.align-right {
+  position: absolute;
+  right: 20px;
+  float: right;
 }
 </style>

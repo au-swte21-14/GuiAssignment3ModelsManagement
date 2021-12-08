@@ -46,46 +46,17 @@ export default {
 
   methods: {
     onSubmit() {
-      console.log(this.form);
       axios.post("/api/account/login", this.form).then(response => {
-        console.log(response);
+        localStorage.setItem("token", response.data.jwt);
+        this.$router.push('/');
       }).catch(error => {
-        console.log(error);
-        this.$bvToast.toast("Login failed", {
+        this.$bvToast.toast(error?.response?.data[""], {
           title: "Login failed",
           toaster: "b-toaster-top-right",
           solid: true,
           appendToast: true
         })
       });
-    },
-
-    async sendLogin() {
-      let url = "https://localhost:44368/api/account/login";
-      try {
-        localStorage.setItem("loginEmail", this.email);
-        let response = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(this.dataObject),
-          headers: new Headers({"Content-Type": "application/json"})
-        });
-        if (response.ok) {
-          let token = await response.json();
-          localStorage.setItem("token", token.jwt);
-          localStorage.setItem("logInStatus", "true");
-          this.$router.push('About')
-        } else {
-          alert("Server returned: " + response.statusText);
-        }
-
-      } catch (err) {
-        alert("Error: " + err);
-      }
-    }
-  },
-  mounted() {
-    if (localStorage.getItem("logInStatus") === "true") {
-      this.$router.back();
     }
   }
 }
