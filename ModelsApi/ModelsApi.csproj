@@ -27,6 +27,12 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\I4GUI Mandatory assignment 3.pdf">
+      <Link>ModelsApi\I4GUI Mandatory assignment 3.pdf</Link>
+    </Content>
+  </ItemGroup>
+
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
