@@ -45,7 +45,8 @@ export default {
   },
 
   methods: {
-    onSubmit() {
+    onSubmit(event) {
+      event.preventDefault();
       axios.post("/api/account/login", this.form).then(response => {
         localStorage.setItem("token", response.data.jwt);
         this.$router.push('/');
