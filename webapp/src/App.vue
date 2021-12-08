@@ -5,6 +5,8 @@
         <router-link to="/">Home</router-link>
         |
         <router-link to="/about">About</router-link>
+        |
+        <router-link to="/create_model">Create Model</router-link>
 
         <a class="align-right" v-on:click="logOut()">Log out</a>
       </div>
