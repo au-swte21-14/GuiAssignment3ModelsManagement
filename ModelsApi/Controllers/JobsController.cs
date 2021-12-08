@@ -67,6 +67,7 @@ namespace ModelsApi.Controllers
             }
 
             var jobDto = _mapper.Map<Job>(job);
+            jobDto.JobId = job.EfJobId;
 
             foreach (var jobModel in job.JobModels)
             {

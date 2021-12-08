@@ -96,9 +96,9 @@ namespace ModelsApi
                     }
                 };
                 OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
-{
-    {securityScheme, new string[] { }},
-};
+                    {
+                        {securityScheme, Array.Empty<string>()},
+                    };
                 c.AddSecurityRequirement(securityRequirements);
             });
 

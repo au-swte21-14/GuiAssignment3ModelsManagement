@@ -45,7 +45,8 @@ namespace ModelsApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<EfModel>> GetModel(long id)
         {
-            var model = await _context.Models.FindAsync(id);
+            var model = await _context.Models.Where(m => m.EfModelId == id)
+                .FirstOrDefaultAsync().ConfigureAwait(false);
 
             if (model == null)
             {
@@ -55,12 +56,47 @@ namespace ModelsApi.Controllers
             return model;
         }
 
+        // GET: api/Models/5/jobs
+        /// <summary>
+        /// Returns the basic info for a model with an array of the models jobs.
+        /// </summary>
+        /// <param name="id">ModelId</param>
+        /// <returns>Model with jobs</returns>
+        [HttpGet("{id}/jobs")]
+        public async Task<ActionResult<Model>> GetModelwithJobs(long id)
+        {
+            var model = await _context.Models.Where(m => m.EfModelId == id)
+                .Include(m => m.JobModels)
+                .ThenInclude(jm => jm.Job)
+                .FirstOrDefaultAsync().ConfigureAwait(false);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            var modelDto = _mapper.Map<Model>(model);
+
+            foreach (var jobModel in model.JobModels)
+            {
+                var jobDto = _mapper.Map<Job>(jobModel.Job);
+                jobDto.JobId = jobModel.Job.EfJobId;
+                modelDto.Jobs.Add(jobDto);
+            }
+
+            return modelDto;
+        }
+
         // PUT: api/Models/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutModel(long id, EfModel model)
         {
+            if (model == null)
+            {
+                return BadRequest();
+            }
             if (id != model.EfModelId)
             {
                 return BadRequest();
@@ -70,7 +106,7 @@ namespace ModelsApi.Controllers
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync().ConfigureAwait(false);
             }
             catch (DbUpdateConcurrencyException)
             {
