@@ -5,3 +5,4 @@ bin
 *.user
 .editorconfig
 GlobalSuppressions.cs
+app.db

@@ -16,15 +16,13 @@ namespace ModelsApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             modelBuilder.Entity("ModelsApi.Models.Entities.EfAccount", b =>
-                {
-                    b.Property<long>("EfAccountId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            {
+                b.Property<long>("EfAccountId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bigint");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(254)")
@@ -47,11 +45,10 @@ namespace ModelsApi.Migrations
                 });
 
             modelBuilder.Entity("ModelsApi.Models.Entities.EfExpense", b =>
-                {
-                    b.Property<long>("EfExpenseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            {
+                b.Property<long>("EfExpenseId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bigint");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
@@ -79,11 +76,10 @@ namespace ModelsApi.Migrations
                 });
 
             modelBuilder.Entity("ModelsApi.Models.Entities.EfJob", b =>
-                {
-                    b.Property<long>("EfJobId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            {
+                b.Property<long>("EfJobId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bigint");
 
                     b.Property<string>("Comments")
                         .HasColumnType("nvarchar(2000)")
@@ -124,11 +120,10 @@ namespace ModelsApi.Migrations
                 });
 
             modelBuilder.Entity("ModelsApi.Models.Entities.EfManager", b =>
-                {
-                    b.Property<long>("EfManagerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            {
+                b.Property<long>("EfManagerId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bigint");
 
                     b.Property<long>("EfAccountId")
                         .HasColumnType("bigint");
@@ -157,11 +152,10 @@ namespace ModelsApi.Migrations
                 });
 
             modelBuilder.Entity("ModelsApi.Models.Entities.EfModel", b =>
-                {
-                    b.Property<long>("EfModelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            {
+                b.Property<long>("EfModelId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bigint");
 
                     b.Property<string>("AddresLine1")
                         .HasColumnType("nvarchar(64)")
