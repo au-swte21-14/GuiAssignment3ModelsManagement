@@ -125,16 +125,16 @@ export default {
 
   methods: {
     CreateModel: function () {
-      var url = `https://localhost:44368/api/Models`;
+      var url = "https://localhost:8080/api/Models";
       this.model.height = parseFloat(this.model.height);
       this.model.shoeSize = parseInt(this.model.shoeSize);
       axios.post(url, this.model, {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + localStorage.getItem('token')
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
         }
       }).then(responseJson => {
-        this.job = responseJson; this.goBack();
+        this.response = responseJson; this.goBack();
       }).catch(error => { alert('Something bad happened: ' + error);});
     },
     goBack() {
@@ -174,7 +174,7 @@ textarea {
 .button {
   width: 65%;
   border: 1px solid pink;
-  background-color: cornflowerblue;
+  background-color: deepskyblue;
   border-radius: 10px;
   color: purple;
   margin: 10px;
@@ -182,7 +182,7 @@ textarea {
 }
 .button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  background-color: purple;
+  background-color: cornflowerblue;
   color: black;
 }
 </style>
