@@ -50,7 +50,6 @@ export default {
       event.preventDefault();
       axios.post("/api/account/login", this.form).then(response => {
         const decoded = jwtDecode(response.data.jwt);
-        console.log(decoded);
         localStorage.setItem("modelId", decoded.ModelId);
         localStorage.setItem("token", response.data.jwt);
         this.$router.push('/');

@@ -3,6 +3,8 @@
     <b-table striped hover :items="jobs" :fields="fields">
       <template #cell(actions)="row">
         <b-button v-on:click="editJob(row.item.efJobId)" v-show="isManager">Edit</b-button>
+        <b-button v-on:click="showExpenses(row.item.efJobId)" v-show="isManager">Expenses</b-button>
+        <b-button v-on:click="addExpense(row.item.efJobId)" v-show="!isManager">Add expense</b-button>
       </template>
     </b-table>
     <b-button v-on:click="addJob()" v-show="isManager">Add job</b-button>
@@ -26,7 +28,13 @@ export default {
       this.$router.push("/job/new");
     },
     editJob(id) {
-      this.$router.push("/job/" + id);
+      this.$router.push(`/job/${id}`);
+    },
+    showExpenses(id) {
+      this.$router.push(`/expenses/${id}`);
+    },
+    addExpense(id) {
+      this.$router.push(`/expense/${id}/new`);
     }
   },
   mounted() {
@@ -38,7 +46,7 @@ export default {
     }).then(response => {
       this.jobs = response.data.map(job => {
         delete job.jobModels;
-        console.log(job);
+
         return {
           ...job,
           startDate: new Date(job.startDate).toLocaleString("en-gb")
@@ -57,5 +65,7 @@ export default {
 </script>
 
 <style scoped>
-
+td button {
+  margin-left: 10px;
+}
 </style>
