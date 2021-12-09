@@ -5,15 +5,15 @@
     <form v-on:submit="CreateModel">
 
       <br />
-      <label for="fname">Firstname* </label>
+      <label for="firstName">Firstname* </label>
       <br />
       <input
-          type="text" id="fname" name="firstname" value="" required v-model="model.firstName" maxlength="64" />
+          type="text" id="firstName" name="firstname" value="" required v-model="model.firstName" maxlength="64" />
 
       <br /><br />
-      <label for="lname">Lastname* </label>
+      <label for="lastName">Lastname* </label>
       <br />
-      <input type="text" id="lname" name="lastname" value="" required v-model="model.lastName" maxlength="32" />
+      <input type="text" id="lastName" name="lastname" value="" required v-model="model.lastName" maxlength="32" />
 
       <br /> <br />
       <label for="email">Email* </label>
@@ -124,8 +124,9 @@ export default {
   },
 
   methods: {
-    CreateModel: function () {
-      var url = "https://localhost:8080/api/Models";
+    CreateModel: function (event) {
+      event.preventDefault();
+      var url = "/api/Models";
       this.model.height = parseFloat(this.model.height);
       this.model.shoeSize = parseInt(this.model.shoeSize);
       axios.post(url, this.model, {
@@ -135,7 +136,18 @@ export default {
         }
       }).then(responseJson => {
         this.response = responseJson; this.goBack();
-      }).catch(error => { alert('Something bad happened: ' + error);});
+      }).catch(error => {
+        if (error?.response?.data) {
+          for (const [, value] of Object.entries(error?.response?.data)) {
+            this.$bvToast.toast(value, {
+              title: "Login failed",
+              toaster: "b-toaster-top-right",
+              solid: true,
+              appendToast: true
+            });
+          }
+        }
+      });
     },
     goBack() {
       this.$router.back();

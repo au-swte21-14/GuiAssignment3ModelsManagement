@@ -45,16 +45,28 @@ export default {
   },
 
   methods: {
-    CreateManager: function () {
-      var url = `https://localhost:44368/api/Managers`;
+    CreateManager: function (event) {
+      event.preventDefault();
+      var url = "/api/Managers";
       axios.post(url, this.manager, {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + localStorage.getItem('token')
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
         }
       }).then(responseJson => {
-        this.job = responseJson; this.goBack();
-      }).catch(error => { alert('Something bad happened: ' + error);});
+        this.response = responseJson; this.goBack();
+      }).catch(error => {
+        if (error?.response?.data) {
+          for (const [, value] of Object.entries(error?.response?.data)) {
+            this.$bvToast.toast(value, {
+              title: "Login failed",
+              toaster: "b-toaster-top-right",
+              solid: true,
+              appendToast: true
+            });
+          }
+        }
+      });
     },
     goBack() {
       this.$router.back();
