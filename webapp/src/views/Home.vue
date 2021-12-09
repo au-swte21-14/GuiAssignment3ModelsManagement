@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Models Portal App"/>
+    <HelloWorld msg="Welcome to the Models Portal App"/>
   </div>
 </template>
 

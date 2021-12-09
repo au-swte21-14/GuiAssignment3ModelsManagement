@@ -35,6 +35,7 @@
 
 <script>
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 export default {
   name: "Login",
@@ -48,15 +49,22 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       axios.post("/api/account/login", this.form).then(response => {
+        const decoded = jwtDecode(response.data.jwt);
+        console.log(decoded);
+        localStorage.setItem("modelId", decoded.ModelId);
         localStorage.setItem("token", response.data.jwt);
         this.$router.push('/');
       }).catch(error => {
-        this.$bvToast.toast(error?.response?.data[""], {
-          title: "Login failed",
-          toaster: "b-toaster-top-right",
-          solid: true,
-          appendToast: true
-        })
+        if (error?.response?.data) {
+          for (const [, value] of Object.entries(error.response.data)) {
+            this.$bvToast.toast(value, {
+              title: "Login failed",
+              toaster: "b-toaster-top-right",
+              solid: true,
+              appendToast: true
+            });
+          }
+        }
       });
     }
   }

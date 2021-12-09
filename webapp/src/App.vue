@@ -4,7 +4,7 @@
       <div v-show="loggedIn()">
         <router-link to="/">Home</router-link>
         |
-        <router-link to="/about">About</router-link>
+        <router-link to="/jobs">Jobs</router-link>
         |
         <router-link to="/create_model">Create Model</router-link>
 
@@ -24,7 +24,7 @@ export default {
     },
     logOut() {
       localStorage.clear();
-      this.$router.push('login');
+      this.$router.push('/login');
     }
   }
 }

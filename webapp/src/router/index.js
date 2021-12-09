@@ -15,12 +15,20 @@ const routes = [
         component: () => import('../views/Home.vue')
     },
     {
-        path: '/about',
-        name: 'About',
+        path: '/jobs',
+        name: 'Jobs',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import('../views/About.vue')
+        component: () => import('../views/Jobs.vue')
+    },
+    {
+        path: '/job/:id',
+        name: 'Job',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('../views/Job.vue')
     },
     {
         path: '/create_model',
