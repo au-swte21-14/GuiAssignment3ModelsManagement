@@ -7,6 +7,8 @@
         <router-link to="/jobs">Jobs</router-link>
         |
         <router-link to="/create_model">Create Model</router-link>
+        |
+        <router-link to="/create_manager">Create Manager</router-link>
 
         <a class="align-right" v-on:click="logOut()">Log out</a>
       </div>
