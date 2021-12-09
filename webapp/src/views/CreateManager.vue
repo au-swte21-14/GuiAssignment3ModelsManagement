@@ -24,7 +24,7 @@
       <input type="password" id="password" name="password" value="" required v-model="manager.password" maxlength="64" />
 
       <br /><br />
-      <input class="button" type="submit" name="CreateManager" value="Opret" />
+      <input class="button" type="submit" name="CreateManager" value="Create" />
       <input class="button" type="reset" name="reset" value="Reset" />
     </form>
 
