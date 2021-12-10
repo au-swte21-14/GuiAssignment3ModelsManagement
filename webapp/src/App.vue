@@ -9,8 +9,6 @@
         <router-link to="/create_model">Create Model</router-link>
         |
         <router-link to="/create_manager">Create Manager</router-link>
-        |
-        <router-link to="/add_model_for_job">Add Model For Job</router-link>
 
         <a class="align-right" v-on:click="logOut()">Log out</a>
       </div>
