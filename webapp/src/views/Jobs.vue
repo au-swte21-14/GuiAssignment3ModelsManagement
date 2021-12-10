@@ -4,6 +4,7 @@
       <template #cell(actions)="row">
         <b-button v-on:click="editJob(row.item.efJobId)" v-show="isManager">Edit</b-button>
         <b-button v-on:click="showExpenses(row.item.efJobId)" v-show="isManager">Expenses</b-button>
+        <b-button v-on:click="showModels(row.item.efJobId)" v-show="isManager">Models</b-button>
         <b-button v-on:click="addExpense(row.item.efJobId)" v-show="!isManager">Add expense</b-button>
       </template>
     </b-table>
@@ -32,6 +33,9 @@ export default {
     },
     showExpenses(id) {
       this.$router.push(`/expenses/${id}`);
+    },
+    showModels(id) {
+      this.$router.push(`/models/${id}`);
     },
     addExpense(id) {
       this.$router.push(`/expense/${id}/new`);

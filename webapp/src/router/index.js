@@ -47,6 +47,22 @@ const routes = [
         component: () => import('../views/Expense.vue')
     },
     {
+        path: '/models/:id',
+        name: 'Models',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('../views/Models.vue')
+    },
+    {
+        path: '/model/:job_id/:id',
+        name: 'Model',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('../views/Model.vue')
+    },
+    {
         path: '/create_model',
         name: 'Create Model',
         // route level code-splitting
@@ -61,14 +77,6 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import('../views/CreateManager.vue')
-    },
-    {
-        path: '/add_model_for_job',
-        name: 'Add Model For Job',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import('../views/AddModelForJob.vue')
     }
 ]
 
